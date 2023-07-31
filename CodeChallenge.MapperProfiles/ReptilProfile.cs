@@ -10,6 +10,7 @@ namespace CodeChallenge.MapperProfiles
         public ReptilProfile()
         {
             CreateMap<AnimalFormDTO, Reptil>();
+            CreateMap<Reptil, AnimalFormDTO>();
         }
     }
 }

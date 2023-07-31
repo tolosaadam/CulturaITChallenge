@@ -12,6 +12,7 @@ namespace CodeChallenge.MapperProfiles
         public CarnivoroProfile()
         {
             CreateMap<AnimalFormDTO, Carnivoro>();
+            CreateMap<Carnivoro, AnimalFormDTO>();
         }
     }
 }

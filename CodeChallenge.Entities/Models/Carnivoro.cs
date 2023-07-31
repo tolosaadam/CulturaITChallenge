@@ -10,13 +10,13 @@ namespace CodeChallenge.Entities.Models
     public class Carnivoro : Animal
     {
         public override AnimalTiposEnum Tipo { get; } = AnimalTiposEnum.Carnivoro;
-        public double Porcentaje { get; set; }
+        public double PorcentajeCarne { get; set; }
 
         public override double CalcularAlimento()
         {
-            return Porcentaje * Peso;
+            return PorcentajeCarne * Peso;
         }
-        public virtual ValidationResult Validate() => new CarnivoroValidator().Validate(this);
+        public override ValidationResult Validate() => new CarnivoroValidator().Validate(this);
     }
 
     public class CarnivoroValidator : AbstractValidator<Carnivoro>
@@ -46,11 +46,12 @@ namespace CodeChallenge.Entities.Models
                 .NotNull().WithMessage("Debe especificar el {PropertyName} del animal")
                 .GreaterThan(0).WithMessage("El {PropertyName} del animal no puede ser menor a 0");
 
-            RuleFor(m => m.Porcentaje)
+            RuleFor(m => m.PorcentajeCarne)
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("Debe seleccionar el {PropertyName} de su peso en que come el animal")
                 .NotNull().WithMessage("Debe especificar el {PropertyName} de su peso en que come el animal")
-                .GreaterThan(0).WithMessage("El {PropertyName} del peso que come el animal no puede ser menor a 0");
+                .GreaterThan(0).WithMessage("El {PropertyName} del peso que come el animal no puede ser menor a 0")
+                .WithName("Porcentaje de carne");
         }
     }
 }

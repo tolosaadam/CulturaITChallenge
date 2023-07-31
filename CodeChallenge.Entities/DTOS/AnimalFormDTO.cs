@@ -12,7 +12,8 @@ namespace CodeChallenge.Entities.DTOS
         public int Edad { get; set; }
         public string LugarOrigen { get; set; }
         public double Peso { get; set; }
-        public double Porcentaje { get; set; }
+        public double PorcentajeCarne { get; set; }
+        public double PorcentajeHierba { get; set; }
         public double Kilos { get; set; }
         public int DiasCambioDePiel { get; set; }
     }

@@ -13,6 +13,7 @@ namespace CodeChallenge.Interfaces
         List<AnimalTiposEnum> ObtenerTiposAnimales();
         ServiceResponse AgregarAnimal(AnimalFormDTO animalFormDTO);
         ServiceDataResponse<List<Animal>> ObtenerAnimales();
-        ServiceDataResponse<object> CalcularAlimento();
+        double CalcularDiasConsumidos(Animal animal);
+        ServiceDataResponse<TotalAlimentoMensualDTO> CalcularAlimentoMensualTotal();
     }
 }

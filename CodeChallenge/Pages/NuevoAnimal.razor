@@ -63,10 +63,10 @@
                     {
                         <div class="form-group row justify-content-center">
                             <div class="col-2">
-                                <label class="col-form-label">Porcentaje de comida por peso %</label>
+                                <label class="col-form-label">Porcentaje de comida (Carne) %</label>
                             </div>
                             <div class="col-4">
-                                <input type="number" class="form-control" @bind="animalFormDTO.Porcentaje" />
+                                <input type="number" class="form-control" @bind="animalFormDTO.PorcentajeCarne" />
                             </div>
                         </div>                      
                     }
@@ -83,6 +83,14 @@
                     }
                     @if (animalFormDTO.Tipo == AnimalTiposEnum.Reptil)
                     {
+                        <div class="form-group row justify-content-center">
+                            <div class="col-2">
+                                <label class="col-form-label">Porcentaje de comida (Hierba) %</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="number" class="form-control" @bind="animalFormDTO.PorcentajeHierba" />
+                            </div>
+                        </div>
                         <div class="form-group row justify-content-center">
                             <div class="col-2">
                                 <label class="col-form-label">Cambio de Piel (días)</label>
@@ -117,9 +125,14 @@
     private List<string> errorMessages = new List<string>();
     private double totalAlimentoConsumido;
 
-    private void MostrarAlerta()
+    private void MostrarAlertaPeso()
     {
         JSRuntime.InvokeVoidAsync("alert", "Ingresando este animal, se estan excediendo los 1500kg de comida al mes.");
+    }
+
+    private void MostrarAlertaSucess()
+    {
+        JSRuntime.InvokeVoidAsync("alert", "El animal se ingresó correctamente.");
     }
 
     private void AgregarAnimal()
@@ -147,12 +160,13 @@
         }
         else if (serviceResponse.ValidationResult.IsValid && !serviceResponse.Success)
         {
-            MostrarAlerta();
+            MostrarAlertaPeso();
         }
         else if (serviceResponse.Success)
         {
             //Reseteo form si todo se hizo ok
             animalFormDTO = new AnimalFormDTO();
+            MostrarAlertaSucess();
         }
     }
 }
