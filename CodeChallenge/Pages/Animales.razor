@@ -1,0 +1,84 @@
+﻿@page "/animales"
+@using CodeChallenge.Entities.Models
+@inject CodeChallenge.Interfaces.IZoologicoServicio _zoologicoServicio
+<h3>Animales</h3>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Fecha Ingreso</th>
+                <th>Especie</th>
+                <th>Edad</th>
+                <th>Lugar de Origen</th>
+                <th>Peso del animal (Kg)</th>
+                <th>Porcentaje de comida por peso %</th>
+                <th>Kilos extras de comida por día (Kg)</th>
+                <th>Cambio de Piel (días)</th> <!-- Nueva columna para el cambio de piel -->
+                <th>Consumo Comida Por mes (Kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var animal in _animales)
+            {
+                    <tr>
+                        <td>@animal.Tipo</td>
+                    <td>@animal.FechaIngreso.ToString("dd/MM/yyyy")</td>
+                        <td>@animal.Especie</td>
+                        <td>@animal.Edad</td>
+                        <td>@animal.LugarOrigen</td>
+                        <td>@animal.Peso</td>
+                        <td>
+                            @if (animal is Carnivoro carnivoro)
+                            {
+                                @carnivoro.Porcentaje
+                            }
+                        </td>
+                        <td>
+                            @if (animal is Herbivoro herbivoro)
+                            {
+                                @herbivoro.Kilos
+                            }
+                        </td>
+                        <td>
+                            @if (animal is Reptil reptil)
+                            {
+                                @reptil.DiasCambioDePiel
+                            }
+                        </td>
+                        <td>@animal.CalcularAlimento().ToString("F2")</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+    <tr>
+        <td colspan="N">
+            <!-- N es el número de columnas en tu tabla, ajusta según tus necesidades -->
+            Total de comida por mes: @_totalComidaPorMes
+        </td>
+    </tr>
+</div>
+
+
+@code {
+    private List<Animal> _animales;
+    private Double _totalComidaPorMes;
+
+    protected override Task OnInitializedAsync()
+    {
+        _totalComidaPorMes = CalcularAlimento();
+        _animales = ObtenerAnimales();
+        return base.OnInitializedAsync();
+    }
+
+    private List<Animal> ObtenerAnimales()
+    {
+        return _zoologicoServicio.ObtenerAnimales().Data;
+    }
+
+    private double CalcularAlimento()
+    {
+        return Convert.ToDouble(_zoologicoServicio.CalcularAlimento().Data);
+    }
+}

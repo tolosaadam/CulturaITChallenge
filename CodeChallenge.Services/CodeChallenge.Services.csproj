@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeChallenge.Entities\CodeChallenge.Entities.csproj" />
+    <ProjectReference Include="..\CodeChallenge.Interfaces\CodeChallenge.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
