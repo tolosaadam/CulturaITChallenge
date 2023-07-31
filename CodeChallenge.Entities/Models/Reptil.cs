@@ -21,7 +21,7 @@ namespace CodeChallenge.Entities.Models
             double daysFeeding = daysFoodCicle * DiasCambioDePiel;
             double amountFeedingWeek = Porcentaje * Peso;
             double amountFeedingDay = amountFeedingWeek / 7;
-            return (amountFeedingDay * daysFeeding) / 30;
+            return (amountFeedingDay * daysFeeding) / daysInMonth;
         }
         public override ValidationResult Validate() => new ReptilValidator().Validate(this);
     }

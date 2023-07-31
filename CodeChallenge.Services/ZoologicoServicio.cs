@@ -42,6 +42,7 @@ namespace CodeChallenge.Services
             var validatorResponse = animal.Validate();
             if (!validatorResponse.IsValid) return new ServiceResponse(false, validatorResponse);
             #endregion
+
             double daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             if (Convert.ToDouble(CalcularAlimento().Data) + (animal.CalcularAlimento() * daysInMonth) > 1500) return new ServiceResponse(false, validatorResponse);
             _animales.Add(animal);

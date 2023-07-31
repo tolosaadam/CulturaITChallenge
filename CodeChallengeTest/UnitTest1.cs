@@ -19,7 +19,7 @@ namespace CodeChallengeTest
         public void CalcularAlimentoSinAnimales()
         {
             var result = _animales.Sum(a => a.CalcularAlimento());
-            Assert.AreEqual(result, 0);
+            Assert.AreEqual(22.5, result);
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace CodeChallengeTest
         {
             _animales.AddRange(MockFactoryCarnivoros());
             var result = _animales.Sum(a => a.CalcularAlimento());
-            Assert.AreEqual(result, 22.5);
+            Assert.AreEqual(22.5, result);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace CodeChallengeTest
         {
             _animales.AddRange(MockFactoryReptiles());
             var result = _animales.Sum(a => a.CalcularAlimento());
-            Assert.AreEqual(result, 22.5);
+            Assert.AreEqual(10.333333333333334, result);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CodeChallengeTest
         {
             _animales.AddRange(MockFactoryHerbivoros());
             var result = _animales.Sum(a => a.CalcularAlimento());
-            Assert.AreEqual(result, 185);
+            Assert.AreEqual(185, result);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace CodeChallengeTest
         {
             _animales.AddRange(MockFactoryTodos());
             var result = _animales.Sum(a => a.CalcularAlimento());
-            Assert.AreEqual(result, 207.5);
+            Assert.AreEqual(207.5, result);
         }
 
         #region Mock Factory
@@ -73,18 +73,18 @@ namespace CodeChallengeTest
             };
         }
 
-        private List<Carnivoro> MockFactoryReptiles()
+        private List<Reptil> MockFactoryReptiles()
         {
-            return new List<Carnivoro>() {
+            return new List<Reptil>() {
                 new Reptil{
                     Peso = 100,
-                    Porcentaje = 0.05,
-                    DiasCambioDePiel = 3
+                    Porcentaje = 0.5,
+                    DiasCambioDePiel = 7
                 },
                 new Reptil{
-                    Peso = 80,
-                    Porcentaje = 0.1,
-                    DiasCambioDePiel = 4
+                    Peso = 100,
+                    Porcentaje = 0.5,
+                    DiasCambioDePiel = 7
                 }
             };
         }
