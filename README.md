@@ -12,7 +12,7 @@ This API is designed to manage a zoo, where animals are classified into three ty
 
 ## Architecture
 
-The application follows a layered architecture for better organization and separation of concerns. The main layers are:
+The application follows a layered architecture for better organization and separation of concerns.
 
 ## Getting Started
 
